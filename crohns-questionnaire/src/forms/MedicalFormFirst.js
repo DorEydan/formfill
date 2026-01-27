@@ -176,7 +176,7 @@ const handleChange = (e) => {
         return;
       }
 
-      const response = await fetch("http://54.242.154.185:3002:3002/insert_crohn_survey", {
+      const response = await fetch("http://54.242.154.185:3002/insert_crohn_survey", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
