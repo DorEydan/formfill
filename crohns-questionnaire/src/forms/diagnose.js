@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/MyForm.css';
-import { useNavigate ,useLocation} from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
 
 const Diagnose = () => {
-   const location = useLocation();
-   const [selectedOption, setSelectedOption] = useState(""); // Stores Yes/No selection
-   const [questions, setQuestions] = useState([]); // Store questions from DB
+  const location = useLocation();
+  const [selectedOption, setSelectedOption] = useState(""); // Stores Yes/No selection
+  const [questions, setQuestions] = useState([]); // Store questions from DB
   const [frequency, setFrequency] = useState("");
-  const { preferredLanguage ,idNumber} = location.state || {};
+  const { preferredLanguage, idNumber } = location.state || {};
   // State management for the form
   const [formData, setFormData] = useState({
     idNumber: location.state?.idNumber,
@@ -37,74 +37,74 @@ const Diagnose = () => {
 
   useEffect(() => {
     axios.get("http://54.242.154.185:3002/test_questions_medical")
-        .then((response) => {
-            setQuestions(response.data); // Set questions in state
-            const initialFormData = {};
-            response.data.forEach(q => {
-                initialFormData[q.field_name] = ""; // Initialize form data for each field
-            });
-            
-            // Only set formData if it's not set yet, or add missing fields
-            setFormData(prevData => ({
-                ...prevData,   // Keep any previous formData values
-                ...initialFormData // Add or override the new form fields
-            }));
-        })
-        .catch((error) => {
-            console.error("Error fetching questions:", error);
+      .then((response) => {
+        setQuestions(response.data); // Set questions in state
+        const initialFormData = {};
+        response.data.forEach(q => {
+          initialFormData[q.field_name] = ""; // Initialize form data for each field
         });
 
-        window.scrollTo(0, 0); 
+        // Only set formData if it's not set yet, or add missing fields
+        setFormData(prevData => ({
+          ...prevData,   // Keep any previous formData values
+          ...initialFormData // Add or override the new form fields
+        }));
+      })
+      .catch((error) => {
+        console.error("Error fetching questions:", error);
+      });
+
+    window.scrollTo(0, 0);
 
     // Set idNumber from location.state if not already in formData
     if (location.state?.idNumber && !formData.idNumber) {
-        setFormData(prevData => ({
-            ...prevData,
-            idNumber: location.state.idNumber
-        }));
+      setFormData(prevData => ({
+        ...prevData,
+        idNumber: location.state.idNumber
+      }));
     }
     if (location.state?.preferredLanguage && !formData.preferredLanguage) {
-        setFormData(prevData => ({
-            ...prevData,
-            preferredLanguage: location.state.preferredLanguage
-        }));
+      setFormData(prevData => ({
+        ...prevData,
+        preferredLanguage: location.state.preferredLanguage
+      }));
     }
-}, [location.state?.idNumber]); // Only rerun if location.state.idNumber changes
+  }, [location.state?.idNumber]); // Only rerun if location.state.idNumber changes
 
 
-const handleChange = (e) => {
-  const { name, value } = e.target;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
 
-  setFormData((prevState) => {
-    let updatedData = { ...prevState, [name]: value };
+    setFormData((prevState) => {
+      let updatedData = { ...prevState, [name]: value };
 
-    if (name === "chronicDiseases") {
-      // If "No" is selected, reset chronic disease-related fields
-      if (value === "לא") {
+      if (name === "chronicDiseases") {
+        // If "No" is selected, reset chronic disease-related fields
+        if (value === "לא") {
+          updatedData = {
+            ...updatedData,
+            chronicCount: 0,
+            diseases: []
+          };
+        }
+      } else if (name === "chronicCount") {
+        // Dynamically update chronic disease count
+        const count = parseInt(value, 10) || 0;
         updatedData = {
           ...updatedData,
-          chronicCount: 0,
-          diseases: []
+          chronicCount: count,
+          diseases: Array.from({ length: count }, (_, index) => ({
+            id: index + 1,
+            name: "",
+            symptomsAge: "",
+            diagnosisAge: ""
+          }))
         };
       }
-    } else if (name === "chronicCount") {
-      // Dynamically update chronic disease count
-      const count = parseInt(value, 10) || 0;
-      updatedData = {
-        ...updatedData,
-        chronicCount: count,
-        diseases: Array.from({ length: count }, (_, index) => ({
-          id: index + 1,
-          name: "",
-          symptomsAge: "",
-          diagnosisAge: ""
-        }))
-      };
-    }
 
-    return updatedData;
-  });
-};
+      return updatedData;
+    });
+  };
 
 
 
@@ -120,6 +120,14 @@ const handleChange = (e) => {
     e.preventDefault();
     console.log("FormData before sending:", formData);
 
+    const dataToSend = {
+      ...formData,
+      // Convert the array ["Option1", "Option2"] into "Option1, Option2"
+      diagnosis: formData.diagnosis.join(", "),
+      // Ensure idNumber is present
+      id_number: formData.idNumber
+    };
+
     try {
       if (formData.numberOfChildren < 0) {
         alert("מספר ילדים חייב להיות מספר חיובי או 0");
@@ -131,7 +139,7 @@ const handleChange = (e) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(dataToSend),
       });
 
       console.log("Response status:", response.status);
@@ -148,74 +156,74 @@ const handleChange = (e) => {
       navigate("/medicalformfirst", {
         state: { preferredLanguage: formData.preferredLanguage, idNumber: formData.idNumber, diagnosis: formData.diagnosis }
       });
-      
+
     } catch (error) {
       console.error("Fetch error:", error.message);
     }
   };
 
-//אופציות: 1. קרוהן/ קוליטיס 2. פסוריאזיס. 3. ראומטיק ארטריטיס 4. פסוריאטיק ארטריטס 5. פיברומיאלגיה  				
+  //אופציות: 1. קרוהן/ קוליטיס 2. פסוריאזיס. 3. ראומטיק ארטריטיס 4. פסוריאטיק ארטריטס 5. פיברומיאלגיה  				
   return (
-      <div className="form-container">
-        <h2 className="mb-4">Medical Form</h2>
-        <form  onSubmit={handlesubmit}>
-          <div className="row">
+    <div className="form-container">
+      <h2 className="mb-4">Medical Form</h2>
+      <form onSubmit={handlesubmit}>
+        <div className="row">
 
           <div className="form-group radio-preferred">
-          <label htmlFor="diagnosis" className="form-label">
-            {preferredLanguage === 'לשון זכר' 
-              ? questions.find(q => q.field_name === "diagnosis")?.question_text || "שאלה לא זמינה"
-              : questions.find(q => q.field_name === "diagnosis")?.question_text || "שאלה לא זמינה"}
-          </label>
+            <label htmlFor="diagnosis" className="form-label">
+              {preferredLanguage === 'לשון זכר'
+                ? questions.find(q => q.field_name === "diagnosis")?.question_text || "שאלה לא זמינה"
+                : questions.find(q => q.field_name === "diagnosis")?.question_text || "שאלה לא זמינה"}
+            </label>
 
-          {[
-            "קרוהן/קוליטיס",
-            "פסוריאזיס",
-            "ראומטיק ארטריטיס",
-            "פסוריאטיק ארטריטס",
-            "פיברומיאלגיה",
-            "אחר"
-          ].map((option) => (
-            <div className="form-check" key={option}>
-              <input
-                type="checkbox"
-                name="diagnosis"
-                value={option}
-                checked={formData.diagnosis.includes(option)}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  setFormData((prevState) => {
-                    let updatedDiagnosis = [...prevState.diagnosis];
-                    if (updatedDiagnosis.includes(value)) {
-                      updatedDiagnosis = updatedDiagnosis.filter((item) => item !== value);
-                    } else {
-                      updatedDiagnosis.push(value);
-                    }
-                    return {
-                      ...prevState,
-                      diagnosis: updatedDiagnosis,
-                    };
-                  });
-                }}
-              />
-              <label className="form-check-label">{option}</label>
-            </div>
-          ))}
+            {[
+              "קרוהן/קוליטיס",
+              "פסוריאזיס",
+              "ראומטיק ארטריטיס",
+              "פסוריאטיק ארטריטס",
+              "פיברומיאלגיה",
+              "אחר"
+            ].map((option) => (
+              <div className="form-check" key={option}>
+                <input
+                  type="checkbox"
+                  name="diagnosis"
+                  value={option}
+                  checked={formData.diagnosis.includes(option)}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    setFormData((prevState) => {
+                      let updatedDiagnosis = [...prevState.diagnosis];
+                      if (updatedDiagnosis.includes(value)) {
+                        updatedDiagnosis = updatedDiagnosis.filter((item) => item !== value);
+                      } else {
+                        updatedDiagnosis.push(value);
+                      }
+                      return {
+                        ...prevState,
+                        diagnosis: updatedDiagnosis,
+                      };
+                    });
+                  }}
+                />
+                <label className="form-check-label">{option}</label>
+              </div>
+            ))}
+          </div>
+
+
         </div>
 
+        <h3>
+          {preferredLanguage === "לשון זכר" ? " שלח שאלון מס 2 מתוך 15" : " שלחי שאלון מס 3 מתוך 15"}
 
-        </div>
+        </h3>
+        <button type="submit" className="btn btn-primary">
+          {preferredLanguage === "לשון זכר" ? "שלח" : "שלחי"}
+        </button>
 
-    <h3>
-            {preferredLanguage === "לשון זכר" ? " שלח שאלון מס 2 מתוך 15" : " שלחי שאלון מס 3 מתוך 15"}
-
-          </h3>
-          <button type="submit" className="btn btn-primary">
-            {preferredLanguage === "לשון זכר" ? "שלח" : "שלחי"}
-          </button>
-
-        </form>
-      </div>
+      </form>
+    </div>
   );
 };
 
