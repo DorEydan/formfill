@@ -18,7 +18,7 @@ const foodItems = [
     { label: 'בחודש האחרון כמה פעמים אכלת חטיפים מלוחים', name: 'saltySnacks' },
     { label: 'בחודש האחרון כמה פעמים אכלת חטיפים מתוקים', name: 'sweetSnacks' },
     { label: 'בחודש האחרון כמה פעמים שתית קפה / תה', name: 'drinkingCoffeeOrTea' },
-    { label: 'בחודש האחרון כמה פעמים שתית כוסות מים', name: 'drinkingGlassOfWater' },
+    { label: 'ביום ממוצע כמה כוסות מים את שותה', name: 'drinkingGlassOfWater' },
 ];
 
 const HealthLifestyleForm = () => {

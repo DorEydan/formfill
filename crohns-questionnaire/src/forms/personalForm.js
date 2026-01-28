@@ -223,7 +223,7 @@ const PersonalForm = () => {
       <form onSubmit={handlesubmit}>
         <div className="form-group radio-preferred">
           <label htmlFor="maritalStatus" className="form-label">
-            {questions.find(q => q.field_name === "maritalStatus")?.question_text || "שאלה לא זמינה"}
+            {questions.find(q => q.field_name === "maritalStatus")?.question_text || "שאלה כמה פעמים בשנה אתה מבקר רופא בעקבות אבחנה זו (תלוי איזו אבחנה מדובר)"}
 
           </label>
 
@@ -246,7 +246,7 @@ const PersonalForm = () => {
         {formData.preferredLanguage === 'לשון זכר' && (
           <div className="form-group">
             <label className="form-label">
-              {questions.find(q => q.field_name === "numberOfChildren")?.question_text || "שאלה לא זמינה"}
+              {questions.find(q => q.field_name === "numberOfChildren")?.question_text || "שאלה 2 לא זמינה"}
 
             </label>
             <input
@@ -263,7 +263,7 @@ const PersonalForm = () => {
 
         <div className="form-group">
           <label htmlFor="height">
-            {questions.find(q => q.field_name === "height")?.question_text || "שאלה לא זמינה"}
+            {questions.find(q => q.field_name === "height")?.question_text || "2 שאלה  לא זמינה"}
 
           </label>
           <input type="number" name="height" id="height" min="0" className="form-control" value={formData.height} onChange={handleChange} />
@@ -271,13 +271,13 @@ const PersonalForm = () => {
 
         <div className="form-group">
           <label htmlFor="weight">
-            {questions.find(q => q.field_name === "weight")?.question_text || "שאלה לא זמינה"}</label>
+            {questions.find(q => q.field_name === "weight")?.question_text || "3 שאלה לא זמינה"}</label>
           <input type="number" name="weight" id="weight" min="0" className="form-control" value={formData.weight} onChange={handleChange} />
         </div>
 
         <div className="form-group radio-preferred">
           <label htmlFor="weightChange" className="form-label">
-            {questions.find(q => q.field_name === "weightChange")?.question_text || "שאלה לא זמינה"}
+            {questions.find(q => q.field_name === "weightChange")?.question_text || "4 שאלה לא זמינה"}
           </label>
           <div className="form-check">
             <input
@@ -308,7 +308,7 @@ const PersonalForm = () => {
             {/* Year Input Only */}
             <div className="form-group radio-preferred">
               <label htmlFor="changeTime" className="form-label">
-                {questions.find(q => q.field_name === "changeTime")?.question_text || "שאלה לא זמינה"}
+                {questions.find(q => q.field_name === "changeTime")?.question_text || "5 שאלה לא זמינה"}
               </label>
               <div className="d-flex justify-content-end">
                 <input
@@ -335,7 +335,7 @@ const PersonalForm = () => {
 
           <div className="form-group">
             <label htmlFor="diseaseImpact" className="form-label">
-              {questions.find(q => q.field_name === "diseaseImpact")?.question_text || "שאלה לא זמינה"}
+              {questions.find(q => q.field_name === "diseaseImpact")?.question_text || "6 שאלה לא זמינה"}
 
             </label>
             <select
@@ -358,7 +358,7 @@ const PersonalForm = () => {
         <div className="form-group">
           <label htmlFor="currentOccupation">
 
-            {questions.find(q => q.field_name === "currentOccupation")?.question_text || "שאלה לא זמינה"}
+            {questions.find(q => q.field_name === "currentOccupation")?.question_text || "7 שאלה לא זמינה"}
           </label>
           <select name="currentOccupation" id="currentOccupation" className="form-control" value={formData.currentOccupation} onChange={handleChange} >
             <option value="" disabled>
@@ -400,7 +400,7 @@ const PersonalForm = () => {
 
         <div className="form-group">
           <label htmlFor="yearsInOccupation">
-            {questions.find(q => q.field_name === "yearsInOccupation")?.question_text || "שאלה לא זמינה"}
+            {questions.find(q => q.field_name === "yearsInOccupation")?.question_text || "8 שאלה לא זמינה"}
           </label>
           <input type="number" min="0" name="yearsInOccupation" id="yearsInOccupation" className="form-control" value={formData.yearsInOccupation} onChange={handleChange} />
         </div>
@@ -408,8 +408,8 @@ const PersonalForm = () => {
         <div className="form-group">
           <label htmlFor="employmentType">
           {preferredLanguage === 'לשון זכר' 
-                ? questions.find(q => q.field_name === "employmentTypeMan")?.question_text || "שאלה לא זמינה"
-                : questions.find(q => q.field_name === "employmentTypeWoman")?.question_text || "שאלה לא זמינה"}
+                ? questions.find(q => q.field_name === "employmentTypeMan")?.question_text || "9 שאלה לא זמינה"
+                : questions.find(q => q.field_name === "employmentTypeWoman")?.question_text || "10 שאלה לא זמינה"}
 
             
 
@@ -436,7 +436,7 @@ const PersonalForm = () => {
         {formData.employmentType !== "לא עובד" && formData.employmentType !== "לא עובדת" && (
           <div className="form-group">
             <label htmlFor="dailyActivity">
-              {questions.find(q => q.field_name === "dailyActivity")?.question_text || "שאלה לא זמינה"}
+              {questions.find(q => q.field_name === "dailyActivity")?.question_text || "11 שאלה לא זמינה"}
             </label>
             <select
               name="dailyActivity"
@@ -460,7 +460,7 @@ const PersonalForm = () => {
 
         <div className="form-group">
           <label htmlFor="education">
-            {questions.find(q => q.field_name === "education")?.question_text || "שאלה לא זמינה"}
+            {questions.find(q => q.field_name === "education")?.question_text || "12 שאלה לא זמינה"}
           </label>
           <select name="education" id="education" className="form-control" value={formData.education} onChange={handleChange} >
             <option value="" disabled>
@@ -482,7 +482,7 @@ const PersonalForm = () => {
 
         <div className="form-group">
           <label htmlFor="educationYears">
-            {questions.find(q => q.field_name === "educationYears")?.question_text || "שאלה לא זמינה"}
+            {questions.find(q => q.field_name === "educationYears")?.question_text || "13 שאלה לא זמינה"}
           </label>
           <select name="educationYears" id="educationYears" className="form-control" value={formData.educationYears} onChange={handleChange} >
             <option value="">בחר שנות לימוד</option>
@@ -498,42 +498,42 @@ const PersonalForm = () => {
 
         <div className="form-group">
           <label htmlFor="countryOfBirth">
-            {questions.find(q => q.field_name === "countryOfBirth")?.question_text || "שאלה לא זמינה"}
+            {questions.find(q => q.field_name === "countryOfBirth")?.question_text || "14 שאלה לא זמינה"}
           </label>
           <input type="text" name="countryOfBirth" id="countryOfBirth" className="form-control" value={formData.countryOfBirth} onChange={handleChange} />
         </div>
 
         <div className="form-group">
           <label htmlFor="motherCountryOfBirth">
-            {questions.find(q => q.field_name === "motherCountryOfBirth")?.question_text || "שאלה לא זמינה"}
+            {questions.find(q => q.field_name === "motherCountryOfBirth")?.question_text || "15 שאלה לא זמינה"}
           </label>
           <input type="text" name="motherCountryOfBirth" id="motherCountryOfBirth" className="form-control" value={formData.motherCountryOfBirth} onChange={handleChange} />
         </div>
 
         <div className="form-group">
           <label htmlFor="motherOrigin">
-            {questions.find(q => q.field_name === "motherOrigin")?.question_text || "שאלה לא זמינה"}
+            {questions.find(q => q.field_name === "motherOrigin")?.question_text || "16 שאלה לא זמינה"}
           </label>
           <input type="text" name="motherOrigin" id="motherOrigin" className="form-control" value={formData.motherOrigin} onChange={handleChange} />
         </div>
 
         <div className="form-group">
           <label htmlFor="fatherCountryOfBirth">
-            {questions.find(q => q.field_name === "fatherCountryOfBirth")?.question_text || "שאלה לא זמינה"}
+            {questions.find(q => q.field_name === "fatherCountryOfBirth")?.question_text || "17 שאלה לא זמינה"}
           </label>
           <input type="text" name="fatherCountryOfBirth" id="fatherCountryOfBirth" className="form-control" value={formData.fatherCountryOfBirth} onChange={handleChange} />
         </div>
 
         <div className="form-group">
           <label htmlFor="fatherOrigin">
-            {questions.find(q => q.field_name === "fatherOrigin")?.question_text || "שאלה לא זמינה"}
+            {questions.find(q => q.field_name === "fatherOrigin")?.question_text || "18 שאלה לא זמינה"}
           </label>
           <input type="text" name="fatherOrigin" id="fatherOrigin" className="form-control" value={formData.fatherOrigin} onChange={handleChange} />
         </div>
 
         <div className="form-group">
           <label htmlFor="numberOfSiblings">
-            {questions.find(q => q.field_name === "numberOfSiblings")?.question_text || "שאלה לא זמינה"}
+            {questions.find(q => q.field_name === "numberOfSiblings")?.question_text || "19 שאלה לא זמינה"}
           </label>
           <input
             type="number"
@@ -551,35 +551,35 @@ const PersonalForm = () => {
 
         <div className="form-group">
           <label htmlFor="familyOrder">
-            {questions.find(q => q.field_name === "familyOrder")?.question_text || "שאלה לא זמינה"}
+            {questions.find(q => q.field_name === "familyOrder")?.question_text || "20 שאלה לא זמינה"}
           </label>
           <input type="number" name="familyOrder" min="0" id="familyOrder" className="form-control" value={formData.familyOrder} onChange={handleChange} />
         </div>
 
         <div className="form-group">
           <label htmlFor="motherAgeAtBirth">
-            {questions.find(q => q.field_name === "motherAgeAtBirth")?.question_text || "שאלה לא זמינה"}
+            {questions.find(q => q.field_name === "motherAgeAtBirth")?.question_text || "21 שאלה לא זמינה"}
           </label>
           <input type="number" name="motherAgeAtBirth" id="motherAgeAtBirth" min="0" className="form-control" value={formData.motherAgeAtBirth} onChange={handleChange} />
         </div>
 
         <div className="form-group">
           <label htmlFor="fatherAgeAtBirth">
-            {questions.find(q => q.field_name === "fatherAgeAtBirth")?.question_text || "שאלה לא זמינה"}
+            {questions.find(q => q.field_name === "fatherAgeAtBirth")?.question_text || "22 שאלה לא זמינה"}
           </label>
           <input type="number" name="fatherAgeAtBirth" id="fatherAgeAtBirth" min="0" className="form-control" value={formData.fatherAgeAtBirth} onChange={handleChange} />
         </div>
 
         <div className="form-group">
           <label htmlFor="householdMembers">
-            {questions.find(q => q.field_name === "householdMembers")?.question_text || "שאלה לא זמינה"}
+            {questions.find(q => q.field_name === "householdMembers")?.question_text || "23 שאלה לא זמינה"}
           </label>
           <input type="number" name="householdMembers" id="householdMembers" className="form-control" min="0" value={formData.householdMembers} onChange={handleChange} />
         </div>
 
         <div className="form-group radio-preferred">
           <label htmlFor="petOwner" className="form-label" >
-            {questions.find(q => q.field_name === "petOwner")?.question_text || "שאלה לא זמינה"}
+            {questions.find(q => q.field_name === "petOwner")?.question_text || "24 שאלה לא זמינה"}
           </label>
           <div className="form-check">
             <input type="radio" name="petOwner" value="כן" onChange={handleChange}
@@ -600,7 +600,7 @@ const PersonalForm = () => {
         {formData.petOwner === 'כן' && (
           <div className="form-group">
             <label htmlFor="petAge">
-              {questions.find(q => q.field_name === "petAge")?.question_text || "שאלה לא זמינה"}
+              {questions.find(q => q.field_name === "petAge")?.question_text || "25 שאלה לא זמינה"}
             </label>
             <input type="number" name="petAge" min="0" id="petAge" className="form-control" value={formData.petAge} onChange={handleChange} />
           </div>
@@ -608,7 +608,7 @@ const PersonalForm = () => {
 
         <div className="form-group radio-preferred">
           <label htmlFor="experiencedLoss" className="form-label" >
-            {questions.find(q => q.field_name === "experiencedLoss")?.question_text || "שאלה לא זמינה"}
+            {questions.find(q => q.field_name === "experiencedLoss")?.question_text || "26 שאלה לא זמינה"}
           </label>
           <div className="form-check">
             <input type="radio" name="experiencedLoss" value="כן" onChange={handleChange}
@@ -628,7 +628,7 @@ const PersonalForm = () => {
           <div className="form-group">
             <label htmlFor="whoseLost">
 
-              {questions.find(q => q.field_name === "whoseLost")?.question_text || "שאלה לא זמינה"}
+              {questions.find(q => q.field_name === "whoseLost")?.question_text || "27 שאלה לא זמינה"}
             </label>
             <input type="text" name="whoseLost" id="whoseLost" className="form-control" value={formData.whoseLost} onChange={handleChange} />
           </div>
@@ -638,7 +638,7 @@ const PersonalForm = () => {
           <div className="form-group">
             <label htmlFor="ageAtLoss">
 
-              {questions.find(q => q.field_name === "ageAtLoss")?.question_text || "שאלה לא זמינה"}
+              {questions.find(q => q.field_name === "ageAtLoss")?.question_text || "28 שאלה לא זמינה"}
             </label>
             <input type="number" name="ageAtLoss" min="0" id="ageAtLoss" className="form-control" value={formData.ageAtLoss} onChange={handleChange} />
           </div>
@@ -646,7 +646,7 @@ const PersonalForm = () => {
 
         <div className="form-group radio-preferred">
           <label htmlFor="welfareTreatment" className="form-label" >
-            {questions.find(q => q.field_name === "welfareTreatment")?.question_text || "שאלה לא זמינה"}
+            {questions.find(q => q.field_name === "welfareTreatment")?.question_text || "29 שאלה לא זמינה"}
           </label>
           <div className="form-check">
             <input type="radio" name="welfareTreatment" value="כן" onChange={handleChange} 
