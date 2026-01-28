@@ -86,6 +86,7 @@ const PersonalForm = () => {
   const maleEmploymentOptions = [
     { value: "עובד מהבית", label: "עובד מהבית" },
     { value: "עובד היברידי", label: "עובד היברידי" },
+    { value: "משרה חלקית", label: "משרה חלקית" },
     { value: "משרה מלאה במקום העבודה", label: "משרה מלאה במקום העבודה" },
     { value: "משמרות", label: "משמרות" },
     { value: "לא עובד", label: "לא עובד" },
@@ -223,7 +224,7 @@ const PersonalForm = () => {
       <form onSubmit={handlesubmit}>
         <div className="form-group radio-preferred">
           <label htmlFor="maritalStatus" className="form-label">
-            {questions.find(q => q.field_name === "maritalStatus")?.question_text || "שאלה כמה פעמים בשנה אתה מבקר רופא בעקבות אבחנה זו (תלוי איזו אבחנה מדובר)"}
+            {questions.find(q => q.field_name === "maritalStatus")?.question_text || "שאלה 1 לא זמינה"}
 
           </label>
 
