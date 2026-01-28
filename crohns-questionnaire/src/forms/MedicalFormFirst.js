@@ -169,6 +169,12 @@ const handleChange = (e) => {
     const workIssuesMentalFrequency = formData.workIssuesMentalFrequency;
     console.log("FormData before sending:", formData);
 
+    const dataToSend = {
+      ...formData,
+      diagnosis: Array.isArray(formData.diagnosis) ? formData.diagnosis.join(", ") : formData.diagnosis,
+      id_number: formData.idNumber
+    };
+
 
     try {
       if (formData.numberOfChildren < 0) {
@@ -181,7 +187,7 @@ const handleChange = (e) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(dataToSend),
       });
 
       console.log("Response status:", response.status);
