@@ -944,9 +944,9 @@ const ChildhoodQuestionnaire = () => {
                     <input
                         type="checkbox"
                         name="childhoodDescription"
-                        value="בילדותי צפיתי שעות רבות בטלויזיה"
+                        value="בילדותי צפיתי שעות רבות בטלויזיה / מסכים"
                         onChange={handleCheckboxChange}
-                        checked={formData.childhoodDescription?.includes("בילדותי צפיתי שעות רבות בטלויזיה")}
+                        checked={formData.childhoodDescription?.includes("בילדותי צפיתי שעות רבות בטלויזיה / מסכים")}
                     />
                 </div>
 

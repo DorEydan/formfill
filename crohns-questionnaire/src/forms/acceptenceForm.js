@@ -89,10 +89,10 @@ const AcceptanceForm = () => {
 
         {/* Agreement Section */}
         <p>
-          <strong>כן:</strong> אני מבין/ה הסכמה מדעת זו ומסכים/ה להשתתף במחקר
+          אני מבין/ה הסכמה מדעת זו ומסכים/ה להשתתף במחקר
         </p>
         <p>
-          <strong>לא:</strong> אני לא מסכים/ה או לא רוצה להשתתף בשלב זה
+          אני לא מסכים/ה או לא רוצה להשתתף בשלב זה
         </p>
 
         {/* Text Boxes for Full Name and Date */}

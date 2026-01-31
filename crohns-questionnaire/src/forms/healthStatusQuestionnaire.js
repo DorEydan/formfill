@@ -177,7 +177,7 @@ const [formData, setFormData] = useState({
             {/* Conditionally Render Section based on preferredLanguage */}
         {preferredLanguage != "לשון זכר" && (
         <div className="form-group radio-preferred">
-          <label className="form-label"> הפרעות במחזור החודשי, מחלה גניקולוגית?</label>
+          <label className="form-label"> 38. הפרעות במחזור החודשי, מחלה גניקולוגית?</label>
           {/* Yes/No radio buttons */}
           <div className="form-check">
             <input
@@ -203,7 +203,7 @@ const [formData, setFormData] = useState({
       )}
          {/* Treatment Information */}
          <div className="form-group radio-preferred">
-         <label className="form-label"> הפרעות נפשיות מאובחנות?</label>
+         <label className="form-label"> 39.  הפרעות נפשיות מאובחנות?</label>
               <div className="form-check">
                   <input type="radio" name="mentalDiagnose" value="כן" onChange={handleChangeQUestions}  /> כן
               </div>
@@ -269,7 +269,7 @@ const [formData, setFormData] = useState({
 
                 {/* Treatment Information */}
                 <div className="form-group radio-preferred">
-         <label className="form-label"> הפרעות קשב וריכוז?</label>
+         <label className="form-label"> 40. הפרעות קשב וריכוז?</label>
               <div className="form-check">
                   <input type="radio" name="listenDiagnose" value="כן" onChange={handleChangeQUestions}  /> כן
               </div>

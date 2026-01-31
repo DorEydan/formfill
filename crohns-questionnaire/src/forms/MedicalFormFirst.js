@@ -585,7 +585,7 @@ const handleChange = (e) => {
 
 <div>
               <label htmlFor="otherDiagnose" className="form-label">
-              : האם למישהו ממשפחתך (עד קרבה שניה- אחים ואחיות/ הורים/ בני דודים/ אחים של ההורים/ סבים סבתות) גם מאובחן במחלה אוטואימונית?    
+              האם למישהו ממשפחתך (עד קרבה שניה- אחים ואחיות/ הורים/ בני דודים/ אחים של ההורים/ סבים סבתות) גם מאובחן במחלה אוטואימונית?    
                 </label>
                 <div className="form-check">
                           <input type="radio" name="otherDiagnose" value="כן" onChange={handleChange} 
@@ -688,7 +688,7 @@ const handleChange = (e) => {
                                       )}
                             
                                     {(formData.diagnosis.includes("פסוריאטיק ארטריטס") || formData.diagnosis.includes("ראומטיק ארטריטיס")) && (
-                                      
+
                                       <div className="doctorDueArtisis">
           <h5 className="text-primary">שאלות עבור דלקת מפרקים</h5>
               <label className="form-label">
