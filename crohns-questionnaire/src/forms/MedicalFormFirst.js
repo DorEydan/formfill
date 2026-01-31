@@ -257,6 +257,7 @@ const handleChange = (e) => {
             {/* Diagnosis Information */}
         {formData.diagnosis.includes("קרוהן/קוליטיס") && (
             <div >
+              <h5 className="text-primary">שאלות עבור קרוהן/קוליטיס</h5>
               <label htmlFor="crohnAge" className="form-label">
                 
               {questions.find(q => q.field_name === "crohnAge")?.question_text || "שאלה לא זמינה"}
@@ -292,6 +293,7 @@ const handleChange = (e) => {
 
             {(formData.diagnosis.includes("פסוריאטיק ארטריטס") || formData.diagnosis.includes("ראומטיק ארטריטיס")) && (
             <div >
+              <h5 className="text-primary">שאלות עבור דלקת מפרקים</h5>
               <label htmlFor="artitiesAge" className="form-label">
                 
               {questions.find(q => q.field_name === "artitiesAge")?.question_text || "שאלה לא זמינה"}
@@ -328,6 +330,7 @@ const handleChange = (e) => {
 
 {(formData.diagnosis.includes("פסוריאזיס")) && (
             <div >
+              <h5 className="text-primary">שאלות עבור פסוריאזיס</h5>
               <label htmlFor="psoriasisAge" className="form-label">
                 
               {questions.find(q => q.field_name === "psoriasisAge")?.question_text || "שאלה לא זמינה"}
@@ -364,6 +367,7 @@ const handleChange = (e) => {
             <h3></h3>
             {(formData.diagnosis.includes("פסוריאטיק ארטריטס") || formData.diagnosis.includes("ראומטיק ארטריטיס") || formData.diagnosis.includes("פסוריאזיס")) && (
             <div className="form-group radio-preferred">
+                      <h5 className="text-primary">שאלות עבור פסוריאזיס/דלקת מפרקים</h5>
                       <label htmlFor="biopsieIdent" className="form-label" >
                       {questions.find(q => q.field_name === "biopsieIdent")?.question_text || "שאלה לא זמינה"}
                        </label>
@@ -647,44 +651,46 @@ const handleChange = (e) => {
           {formData.diagnosis.includes("קרוהן/קוליטיס") && (
 
                 <div className="doctorduechron">
+                    <h5 className="text-primary">שאלות עבור קרוהן/קוליטיס</h5>
                     <label className="form-label">
                     {preferredLanguage === 'לשון זכר' 
                 ? questions.find(q => q.field_name === "doctorDueChron_men")?.question_text || "שאלה לא זמינה"
                 : questions.find(q => q.field_name === "doctorDueChron_women")?.question_text || "שאלה לא זמינה"}
-                    
-                    </label>
-                    <div className="slider-container">
-                        <input
-                            type="range"
-                            min="1"
-                            max="4"
-                            step="1"
-                            className="slider"
-                            onInput={handleChange}
-                            id="doctorduechron"
-                            name="doctorduechron"
-                            value={formData.doctorduechron }
-                            onClick={(e) => {
-                              if (formData.doctorduechron === 0) {
-                                  handleChange(e); // Ensure the first click registers
-                              }
-                          }}
-                            onChange={handleChange}
-                        />
-                        <div className="slider-labels">
-
-                            <span>0 - בכלל לא</span>
-                            <span>1-2</span>
-                            <span>3-4</span>
-                            <span>יותר מחמש פעמים</span>
-                        </div>
-                    </div>
-                </div>
-          )}
-
-        {(formData.diagnosis.includes("פסוריאטיק ארטריטס") || formData.diagnosis.includes("ראומטיק ארטריטיס")) && (
-
-          <div className="doctorDueArtisis">
+                                       
+                                                </label>
+                                                <div className="slider-container">
+                                                    <input
+                                                        type="range"
+                                                        min="1"
+                                                        max="4"
+                                                        step="1"
+                                                        className="slider"
+                                                        onInput={handleChange}
+                                                        id="doctorduechron"
+                                                        name="doctorduechron"
+                                                        value={formData.doctorduechron }
+                                                        onClick={(e) => {
+                                                          if (formData.doctorduechron === 0) {
+                                                              handleChange(e); // Ensure the first click registers
+                                                          }
+                                                      }}
+                                                        onChange={handleChange}
+                                                    />
+                                                    <div className="slider-labels">
+                            
+                                                        <span>0 - בכלל לא</span>
+                                                        <span>1-2</span>
+                                                        <span>3-4</span>
+                                                        <span>יותר מחמש פעמים</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      )}
+                            
+                                    {(formData.diagnosis.includes("פסוריאטיק ארטריטס") || formData.diagnosis.includes("ראומטיק ארטריטיס")) && (
+                                      
+                                      <div className="doctorDueArtisis">
+          <h5 className="text-primary">שאלות עבור דלקת מפרקים</h5>
               <label className="form-label">
               {preferredLanguage === 'לשון זכר' 
           ? questions.find(q => q.field_name === "doctorDueArtisis_men")?.question_text || "שאלה לא זמינה"
@@ -723,6 +729,7 @@ const handleChange = (e) => {
 {(formData.diagnosis.includes("פסוריאזיס")) && (
 
 <div className="doctorDuePsoriazis">
+    <h5 className="text-primary">שאלות עבור פסוריאזיס</h5>
     <label className="form-label">
     {preferredLanguage === 'לשון זכר' 
 ? questions.find(q => q.field_name === "doctorDuePsoriazis_men")?.question_text || "שאלה לא זמינה"
@@ -1226,6 +1233,7 @@ const handleChange = (e) => {
             {formData.diagnosis.includes("פסוריאזיס") && (
 
               <div className="form-group radio-preferred">
+              <h5 className="text-primary">שאלות עבור פסוריאזיס</h5>
               <label htmlFor="coverman" className="form-label" >
 
               {questions.find(q => q.field_name === "coverman")?.question_text || "שאלה לא זמינה"} </label>
@@ -1247,6 +1255,7 @@ const handleChange = (e) => {
         {formData.diagnosis.includes("קרוהן/קוליטיס") && (
 
             <div className="form-group radio-preferred">
+          <h5 className="text-primary">שאלות עבור קרוהן/קוליטיס</h5>
           <label htmlFor="cronNegative" className="form-label" >
 
           {questions.find(q => q.field_name === "cronNegative")?.question_text || "שאלה לא זמינה"} </label>
@@ -1268,6 +1277,7 @@ const handleChange = (e) => {
         {(formData.diagnosis.includes("פסוריאטיק ארטריטס") || formData.diagnosis.includes("ראומטיק ארטריטיס")) && (
 
         <div className="form-group radio-preferred">
+        <h5 className="text-primary">שאלות עבור דלקת מפרקים</h5>
         <label htmlFor="artitisNegative" className="form-label" >
 
         {questions.find(q => q.field_name === "artitisNegative")?.question_text || "שאלה לא זמינה"} </label>
@@ -1317,6 +1327,7 @@ const handleChange = (e) => {
   {(formData.diagnosis.includes("פסוריאטיק ארטריטס") || formData.diagnosis.includes("ראומטיק ארטריטיס") || formData.diagnosis.includes("פסוריאזיס")) && (
 
   <div className="form-group radio-preferred">
+          <h5 className="text-primary">שאלות עבור פסוריאזיס/דלקת מפרקים</h5>
           <label htmlFor="steroidiesTakeCare" className="form-label" >
             
           {questions.find(q => q.field_name === "steroidiesTakeCare")?.question_text || "שאלה לא זמינה"}
@@ -1374,6 +1385,7 @@ const handleChange = (e) => {
 {(formData.diagnosis.includes("פסוריאטיק ארטריטס") || formData.diagnosis.includes("ראומטיק ארטריטיס")|| formData.diagnosis.includes("פסוריאזיס")) && (
 
 <div className="form-group radio-preferred">
+        <h5 className="text-primary">שאלות עבור פסוריאזיס/דלקת מפרקים</h5>
         <label htmlFor="fotoTherapyTakeCare" className="form-label" >
           
         {questions.find(q => q.field_name === "fotoTherapyTakeCare")?.question_text || "שאלה לא זמינה"}
@@ -2175,6 +2187,7 @@ const handleChange = (e) => {
       </div>
       {formData.diagnosis.includes("קרוהן/קוליטיס") && (
       <div className="form-group">
+                    <h5 className="text-primary">שאלות עבור קרוהן/קוליטיס</h5>
                     <label className="form-label">מתן צואה ברמיסיה - מספר פעמים ביום </label>
                     <input
                         type="number"
@@ -2189,6 +2202,7 @@ const handleChange = (e) => {
                 )}
 {formData.diagnosis.includes("קרוהן/קוליטיס") && (
                 <div className="form-group">
+                    <h5 className="text-primary">שאלות עבור קרוהן/קוליטיס</h5>
                     <label className="form-label">מתן צואה בזמן התקף - מספר פעמים ביום </label>
                     <input
                         type="number"
