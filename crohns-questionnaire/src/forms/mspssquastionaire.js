@@ -18,34 +18,34 @@ const MSPSSQuestionnaire = () => {
   // Questions in masculine form
 
   const questionsMale = [
-    questions.find(q => q.field_name === "question_1_social_support_man")?.question_text || "שאלה לא זמינה",
-    questions.find(q => q.field_name === "question_2_social_support_man")?.question_text || "שאלה לא זמינה",
-    questions.find(q => q.field_name === "question_3_social_support_man")?.question_text || "שאלה לא זמינה",
-    questions.find(q => q.field_name === "question_4_social_support_man")?.question_text || "שאלה לא זמינה",
-    questions.find(q => q.field_name === "question_5_social_support_man")?.question_text || "שאלה לא זמינה",
-    questions.find(q => q.field_name === "question_6_social_support_man")?.question_text || "שאלה לא זמינה",
-    questions.find(q => q.field_name === "question_7_social_support_man")?.question_text || "שאלה לא זמינה",
-    questions.find(q => q.field_name === "question_8_social_support_man")?.question_text || "שאלה לא זמינה",
-    questions.find(q => q.field_name === "question_9_social_support_man")?.question_text || "שאלה לא זמינה",
-    questions.find(q => q.field_name === "question_10_social_support_man")?.question_text || "שאלה לא זמינה",
-    questions.find(q => q.field_name === "social_support_question_11_man")?.question_text || "שאלה לא זמינה",
-    questions.find(q => q.field_name === "social_support_question_11_man")?.question_text || "שאלה לא זמינה",
+    questions.find(q => q.field_name === "question_1_social_support_man")?.question_text || "שאלה לא זמינה1",
+    questions.find(q => q.field_name === "question_2_social_support_man")?.question_text || "שאלה לא זמינה2",
+    questions.find(q => q.field_name === "question_3_social_support_man")?.question_text || "שאלה לא זמינה3",
+    questions.find(q => q.field_name === "question_4_social_support_man")?.question_text || "שאלה לא זמינה4",
+    questions.find(q => q.field_name === "question_5_social_support_man")?.question_text || "שאלה לא זמינה5",
+    questions.find(q => q.field_name === "question_6_social_support_man")?.question_text || "שאלה לא זמינה6",
+    questions.find(q => q.field_name === "question_7_social_support_man")?.question_text || "שאלה לא זמינה7",
+    questions.find(q => q.field_name === "question_8_social_support_man")?.question_text || "שאלה לא זמינה8",
+    questions.find(q => q.field_name === "question_9_social_support_man")?.question_text || "שאלה לא זמינה9",
+    questions.find(q => q.field_name === "question_10_social_support_man")?.question_text || "שאלה לא זמינה10",
+    questions.find(q => q.field_name === "social_support_question_11_man")?.question_text || "שאלה לא זמינה11",
+    questions.find(q => q.field_name === "social_support_question_12_man")?.question_text || "שאלה לא זמינה12",
   ];
 
   // Questions in feminine form
   const questionsFemale = [
-      questions.find(q => q.field_name === "question_1_social_support_woman")?.question_text || "שאלה לא זמינה",
-      questions.find(q => q.field_name === "question_2_social_support_woman")?.question_text || "שאלה לא זמינה",
-      questions.find(q => q.field_name === "question_3_social_support_woman")?.question_text || "שאלה לא זמינה",
-      questions.find(q => q.field_name === "question_4_social_support_woman")?.question_text || "שאלה לא זמינה",
-      questions.find(q => q.field_name === "question_5_social_support_woman")?.question_text || "שאלה לא זמינה",
-      questions.find(q => q.field_name === "question_6_social_support_woman")?.question_text || "שאלה לא זמינה",
-      questions.find(q => q.field_name === "question_7_social_support_woman")?.question_text || "שאלה לא זמינה",
-      questions.find(q => q.field_name === "question_8_social_support_woman")?.question_text || "שאלה לא זמינה",
-      questions.find(q => q.field_name === "question_9_social_support_woman")?.question_text || "שאלה לא זמינה",
-      questions.find(q => q.field_name === "question_10_social_support_woman")?.question_text || "שאלה לא זמינה",
-      questions.find(q => q.field_name === "social_support_question_11_man")?.question_text || "שאלה לא זמינה",
-      questions.find(q => q.field_name === "social_support_question_12_woman")?.question_text || "שאלה לא זמינה",
+      questions.find(q => q.field_name === "question_1_social_support_woman")?.question_text || "שאלה לא זמינה1",
+      questions.find(q => q.field_name === "question_2_social_support_woman")?.question_text || "שאלה לא זמינה2",
+      questions.find(q => q.field_name === "question_3_social_support_woman")?.question_text || "שאלה לא זמינה3",
+      questions.find(q => q.field_name === "question_4_social_support_woman")?.question_text || "שאלה לא זמינה4",
+      questions.find(q => q.field_name === "question_5_social_support_woman")?.question_text || "שאלה לא זמינה5",
+      questions.find(q => q.field_name === "question_6_social_support_woman")?.question_text || "שאלה לא זמינה6",
+      questions.find(q => q.field_name === "question_7_social_support_woman")?.question_text || "שאלה לא זמינה7",
+      questions.find(q => q.field_name === "question_8_social_support_woman")?.question_text || "שאלה לא זמינה8",
+      questions.find(q => q.field_name === "question_9_social_support_woman")?.question_text || "שאלה לא זמינה9",
+      questions.find(q => q.field_name === "question_10_social_support_woman")?.question_text || "שאלה לא זמינה10",
+      questions.find(q => q.field_name === "social_support_question_11_woman")?.question_text || "שאלה לא זמינה11",
+      questions.find(q => q.field_name === "social_support_question_12_woman")?.question_text || "שאלה לא זמינה12",
     
   ];
 
