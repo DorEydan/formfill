@@ -5,137 +5,26 @@ import { useNavigate ,useLocation} from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
 
-const DiagnosisAges = ({ formData, handleChange, questions }) => (
-  <>
-    {formData.diagnosis.includes("קרוהן/קוליטיס") && (
-      <>
-        <div>
-          <h5 className="text-primary">שאלות עבור קרוהן/קוליטיס</h5>
+const CrohnSection = ({ formData, handleChange, questions, preferredLanguage }) => {
+  if (!formData.diagnosis.includes("קרוהן/קוליטיס")) return null;
+  return (
+    <div className="section-crohn mb-5 border-bottom pb-4">
+      <h4 className="text-primary mb-3">שאלות עבור קרוהן/קוליטיס</h4>
+      
+      <div className="mb-3">
           <label htmlFor="crohnAge" className="form-label">
             {questions.find(q => q.field_name === "crohnAge")?.question_text || "שאלה לא זמינה"}
           </label>
-          <input
-            type="number"
-            className="form-control"
-            id="crohnAge"
-            name="crohnAge"
-            min="0"
-            value={formData.crohnAge}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
+          <input type="number" className="form-control" id="crohnAge" name="crohnAge" min="0" value={formData.crohnAge} onChange={handleChange} />
+      </div>
+      <div className="mb-3">
           <label htmlFor="diagnosisAge" className="form-label">
             {questions.find(q => q.field_name === "diagnosisAge")?.question_text || "שאלה לא זמינה"}
           </label>
-          <input
-            type="number"
-            className="form-control"
-            id="diagnosisAge"
-            name="diagnosisAge"
-            min="0"
-            value={formData.diagnosisAge}
-            onChange={handleChange}
-          />
-        </div>
-      </>
-    )}
+          <input type="number" className="form-control" id="diagnosisAge" name="diagnosisAge" min="0" value={formData.diagnosisAge} onChange={handleChange} />
+      </div>
 
-    {(formData.diagnosis.includes("פסוריאטיק ארטריטס") || formData.diagnosis.includes("ראומטיק ארטריטיס")) && (
-      <>
-        <div>
-          <h5 className="text-primary">שאלות עבור דלקת מפרקים</h5>
-          <label htmlFor="artitiesAge" className="form-label">
-            {questions.find(q => q.field_name === "artitiesAge")?.question_text || "שאלה לא זמינה"}
-          </label>
-          <input
-            type="number"
-            className="form-control"
-            id="artitiesAge"
-            name="artitiesAge"
-            min="0"
-            value={formData.artitiesAge}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="diagnosisArtitisAge" className="form-label">
-            {questions.find(q => q.field_name === "diagnosisArtitisAge")?.question_text || "שאלה לא זמינה"}
-          </label>
-          <input
-            type="number"
-            className="form-control"
-            id="diagnosisArtitisAge"
-            name="diagnosisArtitisAge"
-            min="0"
-            value={formData.diagnosisArtitisAge}
-            onChange={handleChange}
-          />
-        </div>
-      </>
-    )}
-
-    {formData.diagnosis.includes("פסוריאזיס") && (
-      <>
-        <div>
-          <h5 className="text-primary">שאלות עבור פסוריאזיס</h5>
-          <label htmlFor="psoriasisAge" className="form-label">
-            {questions.find(q => q.field_name === "psoriasisAge")?.question_text || "שאלה לא זמינה"}
-          </label>
-          <input
-            type="number"
-            className="form-control"
-            id="psoriasisAge"
-            name="psoriasisAge"
-            min="0"
-            value={formData.psoriasisAge}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="diagnosisPsoriasisAge" className="form-label">
-            {questions.find(q => q.field_name === "diagnosisPsoriasisAge")?.question_text || "שאלה לא זמינה"}
-          </label>
-          <input
-            type="number"
-            className="form-control"
-            id="diagnosisPsoriasisAge"
-            name="diagnosisPsoriasisAge"
-            min="0"
-            value={formData.diagnosisPsoriasisAge}
-            onChange={handleChange}
-          />
-        </div>
-      </>
-    )}
-  </>
-);
-
-const BiopsySection = ({ formData, handleChange, questions }) => {
-  if (!(formData.diagnosis.includes("פסוריאטיק ארטריטס") || formData.diagnosis.includes("ראומטיק ארטריטיס") || formData.diagnosis.includes("פסוריאזיס"))) return null;
-  return (
-    <div className="form-group radio-preferred">
-      <h5 className="text-primary">שאלות עבור פסוריאזיס/דלקת מפרקים</h5>
-      <label htmlFor="biopsieIdent" className="form-label">
-        {questions.find(q => q.field_name === "biopsieIdent")?.question_text || "שאלה לא זמינה"}
-      </label>
-      {["כן", "לא", "לא יודע"].map(opt => (
-        <div className="form-check" key={opt}>
-          <input type="radio" name="biopsieIdent" value={opt} onChange={handleChange}
-            onClick={() => handleChange({ target: { name: "biopsieIdent", value: formData.biopsieIdent === opt ? "" : opt } })}
-            checked={formData.biopsieIdent === opt}
-          /> {opt}
-        </div>
-      ))}
-    </div>
-  );
-};
-
-const DoctorVisitsSpecific = ({ formData, handleChange, questions, preferredLanguage }) => (
-  <>
-    {formData.diagnosis.includes("קרוהן/קוליטיס") && (
-      <div className="doctorduechron">
-        <h5 className="text-primary">שאלות עבור קרוהן/קוליטיס</h5>
+      <div className="doctorduechron mb-3">
         <label className="form-label">
           {preferredLanguage === 'לשון זכר'
             ? questions.find(q => q.field_name === "doctorDueChron_men")?.question_text || "שאלה לא זמינה"
@@ -149,11 +38,62 @@ const DoctorVisitsSpecific = ({ formData, handleChange, questions, preferredLang
           </div>
         </div>
       </div>
-    )}
 
-    {(formData.diagnosis.includes("פסוריאטיק ארטריטס") || formData.diagnosis.includes("ראומטיק ארטריטיס")) && (
-      <div className="doctorDueArtisis">
-        <h5 className="text-primary">שאלות עבור דלקת מפרקים</h5>
+      <div className="form-group mb-3">
+          <label className="form-label">מתן צואה ברמיסיה - מספר פעמים ביום </label>
+          <input type="number" className="form-control" name="rimisia" value={formData.rimisia} onChange={handleChange} min="0" />
+      </div>
+      <div className="form-group mb-3">
+          <label className="form-label">מתן צואה בזמן התקף - מספר פעמים ביום </label>
+          <input type="number" className="form-control" name="poopDuringSuffer" value={formData.poopDuringSuffer} onChange={handleChange} min="0" />
+      </div>
+
+      <div className="form-group radio-preferred mb-3">
+          <label htmlFor="cronNegative" className="form-label" >
+          {questions.find(q => q.field_name === "cronNegative")?.question_text || "שאלה לא זמינה"} </label>
+          <div className="form-check">
+              <input type="radio" name="cronNegative" value="כן" onChange={handleChange}
+                  onClick={() => handleChange({ target: { name: "cronNegative", value: formData.cronNegative === "כן" ? "" :"כן" } })}
+                  checked={formData.cronNegative === "כן"} /> כן
+          </div>
+          <div className="form-check">
+              <input type="radio" name="cronNegative" value="לא" onChange={handleChange} 
+                  onClick={() => handleChange({ target: { name: "cronNegative", value: formData.cronNegative === "לא" ? "" :"לא" } })}
+                  checked={formData.cronNegative === "לא"} /> לא
+          </div>
+      </div>
+      {formData.cronNegative === "כן" && (
+        <div className="form-group mt-3">
+          <label htmlFor="cronNegativeReason" className="form-label">
+          {preferredLanguage === 'לשון זכר' ? ' אנא פרט בבקשה' : ' אנא פרטי בבקשה'}
+          </label>
+          <textarea id="cronNegativeReason" name="cronNegativeReason" value={formData.cronNegativeReason} onChange={handleChange} className="form-control" />
+        </div>
+      )}
+    </div>
+  );
+};
+
+const ArthritisSection = ({ formData, handleChange, questions, preferredLanguage }) => {
+  if (!(formData.diagnosis.includes("פסוריאטיק ארטריטס") || formData.diagnosis.includes("ראומטיק ארטריטיס"))) return null;
+  return (
+    <div className="section-arthritis mb-5 border-bottom pb-4">
+      <h4 className="text-primary mb-3">שאלות עבור דלקת מפרקים</h4>
+      
+      <div className="mb-3">
+          <label htmlFor="artitiesAge" className="form-label">
+            {questions.find(q => q.field_name === "artitiesAge")?.question_text || "שאלה לא זמינה"}
+          </label>
+          <input type="number" className="form-control" id="artitiesAge" name="artitiesAge" min="0" value={formData.artitiesAge} onChange={handleChange} />
+      </div>
+      <div className="mb-3">
+          <label htmlFor="diagnosisArtitisAge" className="form-label">
+            {questions.find(q => q.field_name === "diagnosisArtitisAge")?.question_text || "שאלה לא זמינה"}
+          </label>
+          <input type="number" className="form-control" id="diagnosisArtitisAge" name="diagnosisArtitisAge" min="0" value={formData.diagnosisArtitisAge} onChange={handleChange} />
+      </div>
+
+      <div className="doctorDueArtisis mb-3">
         <label className="form-label">
           {preferredLanguage === 'לשון זכר'
             ? questions.find(q => q.field_name === "doctorDueArtisis_men")?.question_text || "שאלה לא זמינה"
@@ -167,11 +107,53 @@ const DoctorVisitsSpecific = ({ formData, handleChange, questions, preferredLang
           </div>
         </div>
       </div>
-    )}
 
-    {formData.diagnosis.includes("פסוריאזיס") && (
-      <div className="doctorDuePsoriazis">
-        <h5 className="text-primary">שאלות עבור פסוריאזיס</h5>
+      <div className="form-group radio-preferred mb-3">
+        <label htmlFor="artitisNegative" className="form-label" >
+        {questions.find(q => q.field_name === "artitisNegative")?.question_text || "שאלה לא זמינה"} </label>
+        <div className="form-check">
+          <input type="radio" name="artitisNegative" value="כן" onChange={handleChange}
+              onClick={() => handleChange({ target: { name: "artitisNegative", value: formData.artitisNegative === "כן" ? "" :"כן" } })}
+              checked={formData.artitisNegative === "כן"} /> כן
+        </div>
+        <div className="form-check">
+          <input type="radio" name="artitisNegative" value="לא" onChange={handleChange} 
+              onClick={() => handleChange({ target: { name: "artitisNegative", value: formData.artitisNegative === "לא" ? "" :"לא" } })}
+              checked={formData.artitisNegative === "לא"} /> לא
+        </div>
+      </div>
+      {formData.artitisNegative === "כן" && (
+        <div className="form-group mt-3">
+          <label htmlFor="cronNegativeReason" className="form-label">
+          {preferredLanguage === 'לשון זכר' ? ' אנא פרט בבקשה' : ' אנא פרטי בבקשה'}
+          </label>
+          <textarea id="cronNegativeReason" name="cronNegativeReason" value={formData.cronNegativeReason} onChange={handleChange} className="form-control" />
+        </div>
+      )}
+    </div>
+  );
+};
+
+const PsoriasisSection = ({ formData, handleChange, questions, preferredLanguage }) => {
+  if (!formData.diagnosis.includes("פסוריאזיס")) return null;
+  return (
+    <div className="section-psoriasis mb-5 border-bottom pb-4">
+      <h4 className="text-primary mb-3">שאלות עבור פסוריאזיס</h4>
+      
+      <div className="mb-3">
+          <label htmlFor="psoriasisAge" className="form-label">
+            {questions.find(q => q.field_name === "psoriasisAge")?.question_text || "שאלה לא זמינה"}
+          </label>
+          <input type="number" className="form-control" id="psoriasisAge" name="psoriasisAge" min="0" value={formData.psoriasisAge} onChange={handleChange} />
+      </div>
+      <div className="mb-3">
+          <label htmlFor="diagnosisPsoriasisAge" className="form-label">
+            {questions.find(q => q.field_name === "diagnosisPsoriasisAge")?.question_text || "שאלה לא זמינה"}
+          </label>
+          <input type="number" className="form-control" id="diagnosisPsoriasisAge" name="diagnosisPsoriasisAge" min="0" value={formData.diagnosisPsoriasisAge} onChange={handleChange} />
+      </div>
+
+      <div className="doctorDuePsoriazis mb-3">
         <label className="form-label">
           {preferredLanguage === 'לשון זכר'
             ? questions.find(q => q.field_name === "doctorDuePsoriazis_men")?.question_text || "שאלה לא זמינה"
@@ -185,9 +167,75 @@ const DoctorVisitsSpecific = ({ formData, handleChange, questions, preferredLang
           </div>
         </div>
       </div>
-    )}
-  </>
-);
+
+      <div className="form-group radio-preferred mb-3">
+        <label htmlFor="coverman" className="form-label" >
+        {questions.find(q => q.field_name === "coverman")?.question_text || "שאלה לא זמינה"} </label>
+        <div className="form-check">
+          <input type="radio" name="coverman" value="כן" onChange={handleChange}
+              onClick={() => handleChange({ target: { name: "coverman", value: formData.coverman === "כן" ? "" :"כן" } })}
+              checked={formData.coverman === "כן"} /> כן
+        </div>
+        <div className="form-check">
+          <input type="radio" name="coverman" value="לא" onChange={handleChange} 
+              onClick={() => handleChange({ target: { name: "coverman", value: formData.coverman === "לא" ? "" :"לא" } })}
+              checked={formData.coverman === "לא"} /> לא
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const SharedPsoriasisArthritisSection = ({ formData, handleChange, questions, preferredLanguage }) => {
+  if (!(formData.diagnosis.includes("פסוריאטיק ארטריטס") || formData.diagnosis.includes("ראומטיק ארטריטיס") || formData.diagnosis.includes("פסוריאזיס"))) return null;
+  return (
+    <div className="section-shared-psoriasis-arthritis mb-5 border-bottom pb-4">
+      <h4 className="text-primary mb-3">שאלות עבור פסוריאזיס/דלקת מפרקים</h4>
+      
+      <div className="form-group radio-preferred mb-3">
+        <label htmlFor="biopsieIdent" className="form-label">
+          {questions.find(q => q.field_name === "biopsieIdent")?.question_text || "שאלה לא זמינה"}
+        </label>
+        {["כן", "לא", "לא יודע"].map(opt => (
+          <div className="form-check" key={opt}>
+            <input type="radio" name="biopsieIdent" value={opt} onChange={handleChange}
+              onClick={() => handleChange({ target: { name: "biopsieIdent", value: formData.biopsieIdent === opt ? "" : opt } })}
+              checked={formData.biopsieIdent === opt}
+            /> {opt}
+          </div>
+        ))}
+      </div>
+
+      <div className="form-group radio-preferred mb-3">
+        <label htmlFor="steroidiesTakeCare" className="form-label" >
+        {questions.find(q => q.field_name === "steroidiesTakeCare")?.question_text || "שאלה לא זמינה"}
+        </label>
+        {["כן", "לא", "לא יודע"].map(opt => (
+          <div className="form-check" key={opt}>
+            <input type="radio" name="steroidiesTakeCare" value={opt} onChange={handleChange}
+              onClick={() => handleChange({ target: { name: "steroidiesTakeCare", value: formData.steroidiesTakeCare === opt ? "" : opt } })}
+              checked={formData.steroidiesTakeCare === opt}
+            /> {opt}
+          </div>
+        ))}
+      </div>
+
+      <div className="form-group radio-preferred mb-3">
+        <label htmlFor="fotoTherapyTakeCare" className="form-label" >
+        {questions.find(q => q.field_name === "fotoTherapyTakeCare")?.question_text || "שאלה לא זמינה"}
+        </label>
+        {["כן", "לא", "לא יודע"].map(opt => (
+          <div className="form-check" key={opt}>
+            <input type="radio" name="fotoTherapyTakeCare" value={opt} onChange={handleChange}
+              onClick={() => handleChange({ target: { name: "fotoTherapyTakeCare", value: formData.fotoTherapyTakeCare === opt ? "" : opt } })}
+              checked={formData.fotoTherapyTakeCare === opt}
+            /> {opt}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const MedicalForm = () => {
    const location = useLocation();
@@ -439,11 +487,14 @@ const handleChange = (e) => {
         <form  onSubmit={handlesubmit}>
           <div className="row">
             {/* Diagnosis Information */}
-            <DiagnosisAges formData={formData} handleChange={handleChange} questions={questions} />
+            <CrohnSection formData={formData} handleChange={handleChange} questions={questions} preferredLanguage={preferredLanguage} />
+            <ArthritisSection formData={formData} handleChange={handleChange} questions={questions} preferredLanguage={preferredLanguage} />
+            <PsoriasisSection formData={formData} handleChange={handleChange} questions={questions} preferredLanguage={preferredLanguage} />
+            <SharedPsoriasisArthritisSection formData={formData} handleChange={handleChange} questions={questions} preferredLanguage={preferredLanguage} />
           </div>
 
-            <h3></h3>
-            <BiopsySection formData={formData} handleChange={handleChange} questions={questions} />
+          <div className="mt-4"></div>
+          <h4 className="text-primary mb-3">שאלות כלליות</h4>
 
           <div className="mt-4"></div>
 
@@ -699,8 +750,6 @@ const handleChange = (e) => {
                         </div>
           </div>
           </div>
-
-          <DoctorVisitsSpecific formData={formData} handleChange={handleChange} questions={questions} preferredLanguage={preferredLanguage} />
 
         <div className="form-group radio-preferred">
           <label htmlFor="allergies" className="form-label" >
@@ -1165,92 +1214,6 @@ const handleChange = (e) => {
                 />
             </div>
 
-            {formData.diagnosis.includes("פסוריאזיס") && (
-
-              <div className="form-group radio-preferred">
-              <h5 className="text-primary">שאלות עבור פסוריאזיס</h5>
-              <label htmlFor="coverman" className="form-label" >
-
-              {questions.find(q => q.field_name === "coverman")?.question_text || "שאלה לא זמינה"} </label>
-              <div className="form-check">
-                <input type="radio" name="coverman" value="כן" onChange={handleChange}
-                                          onClick={() => handleChange({ target: { name: "coverman", value: formData.coverman === "כן" ? "" :"כן" } })}
-                                          checked={formData.coverman === "כן"}
-                /> כן
-              </div>
-              <div className="form-check">
-                <input type="radio" name="coverman" value="לא" onChange={handleChange} 
-                                          onClick={() => handleChange({ target: { name: "coverman", value: formData.coverman === "לא" ? "" :"לא" } })}
-                                          checked={formData.coverman === "לא"}
-                /> לא
-              </div>
-              </div>
-              )}
-
-        {formData.diagnosis.includes("קרוהן/קוליטיס") && (
-
-            <div className="form-group radio-preferred">
-          <h5 className="text-primary">שאלות עבור קרוהן/קוליטיס</h5>
-          <label htmlFor="cronNegative" className="form-label" >
-
-          {questions.find(q => q.field_name === "cronNegative")?.question_text || "שאלה לא זמינה"} </label>
-          <div className="form-check">
-              <input type="radio" name="cronNegative" value="כן" onChange={handleChange}
-                                         onClick={() => handleChange({ target: { name: "cronNegative", value: formData.cronNegative === "כן" ? "" :"כן" } })}
-                                         checked={formData.cronNegative === "כן"}
-              /> כן
-          </div>
-          <div className="form-check">
-              <input type="radio" name="cronNegative" value="לא" onChange={handleChange} 
-                                         onClick={() => handleChange({ target: { name: "cronNegative", value: formData.cronNegative === "לא" ? "" :"לא" } })}
-                                         checked={formData.cronNegative === "לא"}
-              /> לא
-          </div>
-        </div>
-        )}
-
-        {(formData.diagnosis.includes("פסוריאטיק ארטריטס") || formData.diagnosis.includes("ראומטיק ארטריטיס")) && (
-
-        <div className="form-group radio-preferred">
-        <h5 className="text-primary">שאלות עבור דלקת מפרקים</h5>
-        <label htmlFor="artitisNegative" className="form-label" >
-
-        {questions.find(q => q.field_name === "artitisNegative")?.question_text || "שאלה לא זמינה"} </label>
-        <div className="form-check">
-          <input type="radio" name="artitisNegative" value="כן" onChange={handleChange}
-                                    onClick={() => handleChange({ target: { name: "artitisNegative", value: formData.artitisNegative === "כן" ? "" :"כן" } })}
-                                    checked={formData.artitisNegative === "כן"}
-          /> כן
-        </div>
-        <div className="form-check">
-          <input type="radio" name="artitisNegative" value="לא" onChange={handleChange} 
-                                    onClick={() => handleChange({ target: { name: "artitisNegative", value: formData.artitisNegative === "לא" ? "" :"לא" } })}
-                                    checked={formData.artitisNegative === "לא"}
-          /> לא
-        </div>
-        </div>
-        )}
-
-
-        {(formData.cronNegative === "כן" || formData.artitisNegative=="כן")&& (
-        <div className="form-group mt-3">
-          <label htmlFor="cronNegativeReason" className="form-label">
-          {preferredLanguage === 'לשון זכר' 
-                ? ' אנא פרט בבקשה' 
-                : ' אנא פרטי בבקשה'}
-         
-          </label>
-          <textarea
-            id="cronNegativeReason"
-            name="cronNegativeReason"
-            value={formData.cronNegativeReason}
-            onChange={handleChange}
-            className="form-control"
-            placeholder=""
-          />
-        </div>
-      )}
-
 <div className="form-group radio-preferred">
   <label htmlFor="familyDoctorVisit" className="form-label">
   {preferredLanguage === 'לשון זכר' 
@@ -1258,124 +1221,6 @@ const handleChange = (e) => {
                 : questions.find(q => q.field_name === "doctorDueChron_women")?.question_text || "שאלה לא זמינה"}
 
   </label>
-
-  {(formData.diagnosis.includes("פסוריאטיק ארטריטס") || formData.diagnosis.includes("ראומטיק ארטריטיס") || formData.diagnosis.includes("פסוריאזיס")) && (
-
-  <div className="form-group radio-preferred">
-          <h5 className="text-primary">שאלות עבור פסוריאזיס/דלקת מפרקים</h5>
-          <label htmlFor="steroidiesTakeCare" className="form-label" >
-            
-          {questions.find(q => q.field_name === "steroidiesTakeCare")?.question_text || "שאלה לא זמינה"}
-      </label>
-          <div className="form-check">
-        <input
-          type="radio"
-          id="visitYes"
-          name="steroidiesTakeCare"
-          value="כן"
-          onChange={handleChange}
-          checked={formData.steroidiesTakeCare === "כן"}
-          onClick={() => handleChange({ target: { name: "steroidiesTakeCare", value: formData.steroidiesTakeCare === "כן" ? "" :"כן" } })}
-
-        />
-        <label htmlFor="visitYes">כן</label>
-      </div>
-
-      <div className="form-check">
-        <input
-          type="radio"
-          id="visitNo"
-          name="steroidiesTakeCare"
-          value="לא"
-          onChange={handleChange}
-          checked={formData.steroidiesTakeCare === "לא"}
-          onClick={() => handleChange({ target: { name: "steroidiesTakeCare", value: formData.steroidiesTakeCare === "לא" ? "" :"לא" } })}
-
-        />
-        <label htmlFor="visitNo">לא</label>
-      </div>
-
-      <div className="form-check">
-        <input
-          type="radio"
-          id="visitNotKnoen"
-          name="steroidiesTakeCare"
-          value="לא יודע"
-          onChange={handleChange}
-          checked={formData.steroidiesTakeCare === "לא יודע"}
-          onClick={() => handleChange({ target: { name: "steroidiesTakeCare", value: formData.steroidiesTakeCare === "לא יודע" ? "" :"לא יודע" } })}
-
-        />
-        <label htmlFor="visitNo">
-        {preferredLanguage === 'לשון זכר' 
-                ? '  לא יודע' 
-                : '  לא יודעת'}
-            
-          
-         </label>
-      </div>
-      </div>
-  )}
-
-{(formData.diagnosis.includes("פסוריאטיק ארטריטס") || formData.diagnosis.includes("ראומטיק ארטריטיס")|| formData.diagnosis.includes("פסוריאזיס")) && (
-
-<div className="form-group radio-preferred">
-        <h5 className="text-primary">שאלות עבור פסוריאזיס/דלקת מפרקים</h5>
-        <label htmlFor="fotoTherapyTakeCare" className="form-label" >
-          
-        {questions.find(q => q.field_name === "fotoTherapyTakeCare")?.question_text || "שאלה לא זמינה"}
-    </label>
-        <div className="form-check">
-      <input
-        type="radio"
-        id="visitYes"
-        name="fotoTherapyTakeCare"
-        value="כן"
-        onChange={handleChange}
-        checked={formData.fotoTherapyTakeCare === "כן"}
-        onClick={() => handleChange({ target: { name: "fotoTherapyTakeCare", value: formData.fotoTherapyTakeCare === "כן" ? "" :"כן" } })}
-
-      />
-      <label htmlFor="visitYes">כן</label>
-    </div>
-
-    <div className="form-check">
-      <input
-        type="radio"
-        id="visitNo"
-        name="fotoTherapyTakeCare"
-        value="לא"
-        onChange={handleChange}
-        checked={formData.fotoTherapyTakeCare === "לא"}
-        onClick={() => handleChange({ target: { name: "fotoTherapyTakeCare", value: formData.fotoTherapyTakeCare === "לא" ? "" :"לא" } })}
-
-      />
-      <label htmlFor="visitNo">לא</label>
-    </div>
-
-    <div className="form-check">
-      <input
-        type="radio"
-        id="visitNotKnoen"
-        name="fotoTherapyTakeCare"
-        value="לא יודע"
-        onChange={handleChange}
-        checked={formData.fotoTherapyTakeCare === "לא יודע"}
-        onClick={() => handleChange({ target: { name: "fotoTherapyTakeCare", value: formData.fotoTherapyTakeCare === "לא יודע" ? "" :"לא יודע" } })}
-
-      />
-      <label htmlFor="visitNo">
-      {preferredLanguage === 'לשון זכר' 
-              ? '  לא יודע' 
-              : '  לא יודעת'}
-          
-        
-       </label>
-    </div>
-    </div>
-)}
-
-
 
   <div className="form-check">
     <input
@@ -2120,37 +1965,6 @@ const handleChange = (e) => {
                 </label>
       </div>
       </div>
-      {formData.diagnosis.includes("קרוהן/קוליטיס") && (
-      <div className="form-group">
-                    <h5 className="text-primary">שאלות עבור קרוהן/קוליטיס</h5>
-                    <label className="form-label">מתן צואה ברמיסיה - מספר פעמים ביום </label>
-                    <input
-                        type="number"
-                        className="form-control"
-                        name="rimisia"
-                        value={formData.rimisia}
-                        onChange={handleChange}
-                        
-                        min="0" // Ensures only positive numbers are allowed
-                    />
-                </div>
-                )}
-{formData.diagnosis.includes("קרוהן/קוליטיס") && (
-                <div className="form-group">
-                    <h5 className="text-primary">שאלות עבור קרוהן/קוליטיס</h5>
-                    <label className="form-label">מתן צואה בזמן התקף - מספר פעמים ביום </label>
-                    <input
-                        type="number"
-                        className="form-control"
-                        name="poopDuringSuffer"
-                        value={formData.poopDuringSuffer}
-                        onChange={handleChange}
-                        
-                        min="0" // Ensures only positive numbers are allowed
-                    />
-                </div>
-                )}
-
                 <div className="form-group">
                     <label className="form-label">מתן שתן - מספר פעמים ביום בממוצע </label>
                     <input
