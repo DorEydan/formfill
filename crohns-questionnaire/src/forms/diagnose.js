@@ -182,6 +182,12 @@ const Diagnose = () => {
               "ראומטיק ארטריטיס",
               "פסוריאטיק ארטריטס",
               "פיברומיאלגיה",
+              "לופוס/ זאבת אדמנתית מערכתית SLE",
+              "השימוטו (Hashimoto's Thyroiditis)",
+              "סוכרת סוג 1",
+              "טרשת נפוצה (Sclerosis Multiple -MS)",
+              "ויטיליגו",
+              "צליאק",
               "אחר"
             ].map((option) => (
               <div className="form-check" key={option}>
